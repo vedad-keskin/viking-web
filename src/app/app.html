@@ -1,0 +1,362 @@
+<!-- ================================================
+     VIKING — Auto Servis Jablanica
+     ================================================ -->
+
+<!-- ── HEADER / NAV ── -->
+<header id="header" [class.scrolled]="headerScrolled()" [class.menu-open]="menuOpen()">
+  <div class="header-inner">
+    <a class="header-logo" (click)="scrollTo('hero')" role="button" tabindex="0" aria-label="Viking Logo">
+      <img src="assets/logo.png" alt="Viking Logo" width="40" height="40">
+      <span class="logo-text">VIKING</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a (click)="scrollTo('about')">{{ t('nav.about') }}</a>
+      <a (click)="scrollTo('services')">{{ t('nav.services') }}</a>
+      <a (click)="scrollTo('reviews')">{{ t('nav.reviews') }}</a>
+      <a (click)="scrollTo('gallery')">{{ t('nav.gallery') }}</a>
+      <a (click)="scrollTo('team')">{{ t('nav.team') }}</a>
+      <a (click)="scrollTo('location')">{{ t('nav.location') }}</a>
+      <a (click)="scrollTo('contact')">{{ t('nav.contact') }}</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Language Switcher -->
+      <button class="lang-switch" (click)="toggleLang()" [attr.aria-label]="'Switch to ' + otherLangLabel()">
+        <img [src]="otherLangFlag()" [alt]="otherLangLabel()" width="24" height="16">
+        <span class="lang-label">{{ otherLangLabel() }}</span>
+      </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'" [attr.aria-expanded]="menuOpen()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" [class.active]="menuOpen()" (click)="closeMenu()"></div>
+  <nav class="mobile-nav" [class.active]="menuOpen()" aria-label="Mobile navigation">
+    <a (click)="scrollTo('about')">{{ t('nav.about') }}</a>
+    <a (click)="scrollTo('services')">{{ t('nav.services') }}</a>
+    <a (click)="scrollTo('reviews')">{{ t('nav.reviews') }}</a>
+    <a (click)="scrollTo('gallery')">{{ t('nav.gallery') }}</a>
+    <a (click)="scrollTo('team')">{{ t('nav.team') }}</a>
+    <a (click)="scrollTo('location')">{{ t('nav.location') }}</a>
+    <a (click)="scrollTo('contact')">{{ t('nav.contact') }}</a>
+    <div class="mobile-nav-footer">
+      <a [href]="getPhoneHref('+387 61 839 067')" class="mobile-nav-cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        {{ t('hero.cta') }}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- ── SECTION 1: HERO ── -->
+  <section id="hero" class="hero-section">
+    <div class="hero-bg">
+      <img src="assets/gallery/1.webp" alt="Viking Auto Servis" loading="eager">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-logo animate-on-scroll">
+        <img src="assets/logo.png" alt="Viking Logo" width="160" height="160">
+      </div>
+      <h1 class="hero-title animate-on-scroll">VIKING</h1>
+      <p class="hero-subtitle animate-on-scroll">{{ t('hero.subtitle') }}</p>
+      <a [href]="getPhoneHref('+387 61 839 067')" class="hero-cta-btn animate-on-scroll">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        {{ t('hero.cta') }}
+      </a>
+    </div>
+    <div class="scroll-indicator animate-on-scroll" (click)="scrollTo('about')">
+      <span class="scroll-text">{{ t('hero.scroll') }}</span>
+      <div class="scroll-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2: O NAMA / ABOUT ── -->
+  <section id="about" class="section about-section">
+    <div class="section-container">
+      <h2 class="section-heading outlined animate-on-scroll">{{ t('about.heading') }}</h2>
+      <div class="about-grid">
+        <div class="about-text animate-on-scroll">
+          <p>{{ t('about.text') }}</p>
+        </div>
+        <div class="about-image animate-on-scroll">
+          <img src="assets/gallery/3.webp" alt="Jablanica" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: USLUGE / SERVICES ── -->
+  <section id="services" class="section services-section">
+    <div class="section-container">
+      <h2 class="section-heading outlined animate-on-scroll">{{ t('services.heading') }}</h2>
+      <div class="services-grid">
+        @for (service of services; track service.nameBs) {
+          <div class="service-card animate-on-scroll">
+            <div class="service-icon">
+              @if (service.icon === 'tire') {
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="32" cy="32" r="28"/>
+                  <circle cx="32" cy="32" r="18"/>
+                  <circle cx="32" cy="32" r="6"/>
+                  <line x1="32" y1="4" x2="32" y2="14"/>
+                  <line x1="32" y1="50" x2="32" y2="60"/>
+                  <line x1="4" y1="32" x2="14" y2="32"/>
+                  <line x1="50" y1="32" x2="60" y2="32"/>
+                  <line x1="12" y1="12" x2="19" y2="19"/>
+                  <line x1="45" y1="45" x2="52" y2="52"/>
+                  <line x1="52" y1="12" x2="45" y2="19"/>
+                  <line x1="19" y1="45" x2="12" y2="52"/>
+                </svg>
+              }
+              @if (service.icon === 'wash') {
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 10c0 0-4 6-4 10a4 4 0 008 0c0-4-4-10-4-10z"/>
+                  <path d="M32 4c0 0-6 9-6 15a6 6 0 0012 0c0-6-6-15-6-15z"/>
+                  <path d="M44 10c0 0-4 6-4 10a4 4 0 008 0c0-4-4-10-4-10z"/>
+                  <path d="M8 36h48v4c0 8-8 16-24 16S8 48 8 40v-4z"/>
+                  <path d="M16 44c4-2 8-2 12 0s8 2 12 0 8-2 12 0"/>
+                </svg>
+              }
+              @if (service.icon === 'ac') {
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="32" cy="32" r="28"/>
+                  <path d="M32 8v48"/>
+                  <path d="M24 14l8 8 8-8"/>
+                  <path d="M24 50l8-8 8 8"/>
+                  <path d="M8 32h48"/>
+                  <path d="M14 24l8 8-8 8"/>
+                  <path d="M50 24l-8 8 8 8"/>
+                </svg>
+              }
+            </div>
+            <h3 class="service-name">{{ lang() === 'bs' ? service.nameBs : service.nameEn }}</h3>
+            <p class="service-desc">{{ lang() === 'bs' ? service.descBs : service.descEn }}</p>
+            <p class="service-contact">{{ service.contactName }}</p>
+            <div class="service-actions">
+              <a [href]="getPhoneHref(service.phone)" class="btn btn-accent">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                {{ t('service.call') }}
+              </a>
+              <a [href]="getWhatsAppHref(service.whatsapp)" target="_blank" rel="noopener" class="btn btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: RECENZIJE / REVIEWS ── -->
+  <section id="reviews" class="section reviews-section">
+    <div class="section-container">
+      <h2 class="section-heading outlined animate-on-scroll">{{ t('reviews.heading') }}</h2>
+      <div class="reviews-badge animate-on-scroll">
+        <div class="reviews-rating">
+          <span class="rating-number">5.0</span>
+          <div class="rating-stars">
+            @for (star of getStars(5); track star) {
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            }
+          </div>
+          <span class="rating-source">{{ t('reviews.google') }}</span>
+        </div>
+      </div>
+      <p class="reviews-subtitle animate-on-scroll">{{ t('reviews.subtitle') }}</p>
+
+      <div class="reviews-carousel animate-on-scroll">
+        <div class="reviews-track">
+          @for (review of reviews; track review.name) {
+            <div class="review-card">
+              <div class="review-header">
+                <div class="review-avatar">{{ getInitial(review.name) }}</div>
+                <div class="review-meta">
+                  <span class="review-name">{{ review.name }}</span>
+                  <div class="review-stars">
+                    @for (star of getStars(review.stars); track star) {
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    }
+                  </div>
+                </div>
+                <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+              </div>
+              <p class="review-text">{{ review.text }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="reviews-cta animate-on-scroll">
+        <a href="https://maps.app.goo.gl/zRu2fcZb91t7H4Dg7" target="_blank" rel="noopener" class="btn btn-outline btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          {{ t('reviews.leave') }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: GALERIJA / GALLERY ── -->
+  <section id="gallery" class="section gallery-section">
+    <div class="section-container">
+      <h2 class="section-heading outlined animate-on-scroll">{{ t('gallery.heading') }}</h2>
+      <div class="gallery-carousel animate-on-scroll">
+        <div class="gallery-track">
+          <div class="gallery-item">
+            <img src="assets/gallery/1.webp" alt="Viking Auto Servis" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/2.webp" alt="Viking Auto Servis" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/3.webp" alt="Jablanica" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6: NAŠ TIM / OUR TEAM ── -->
+  <section id="team" class="section team-section">
+    <div class="section-container">
+      <h2 class="section-heading outlined animate-on-scroll">{{ t('team.heading') }}</h2>
+      <div class="team-grid">
+        @for (member of staff; track member.name) {
+          <div class="team-card animate-on-scroll">
+            <div class="team-photo">
+              <img [src]="member.image" [alt]="member.name" loading="lazy">
+            </div>
+            <h3 class="team-name">{{ member.name }}</h3>
+            <p class="team-role">{{ lang() === 'bs' ? member.roleBs : member.roleEn }}</p>
+            <div class="team-actions">
+              <a [href]="getPhoneHref(member.phone)" class="team-action-btn" aria-label="Call">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                <span>{{ member.phone }}</span>
+              </a>
+              <a [href]="getWhatsAppHref(member.whatsapp)" target="_blank" rel="noopener" class="team-action-btn whatsapp" aria-label="WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7: LOKACIJA / LOCATION ── -->
+  <section id="location" class="section location-section">
+    <div class="section-container">
+      <h2 class="section-heading outlined animate-on-scroll">{{ t('location.heading') }}</h2>
+      <div class="location-grid">
+        <div class="location-info animate-on-scroll">
+          <div class="location-address">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <p class="location-addr-text">1 Mart br.11</p>
+              <p class="location-addr-text">Jablanica 88420</p>
+              <p class="location-addr-text">Bosna i Hercegovina</p>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/zRu2fcZb91t7H4Dg7" target="_blank" rel="noopener" class="btn btn-accent btn-lg location-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            {{ t('location.open') }}
+          </a>
+        </div>
+        <div class="location-map animate-on-scroll">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1443.75!2d17.7605798!3d43.6556649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134b432f30e34a43%3A0x5e7c0c52aab5b6de!2sJablanica%2088420!5e0!3m2!1sbs!2sba!4v1706000000000"
+            width="100%"
+            height="400"
+            style="border:0; border-radius: var(--radius-md);"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Viking Auto Servis Jablanica">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ── SECTION 8: KONTAKT / FOOTER ── -->
+<footer id="contact" class="footer-section">
+  <div class="section-container">
+    <h2 class="footer-heading animate-on-scroll">
+      <span>{{ t('contact.heading').split('').slice(0, 3).join('') }}</span>
+      <span>{{ t('contact.heading').split('').slice(3).join('') }}</span>
+    </h2>
+
+    <div class="footer-grid">
+      <!-- Contact Info -->
+      <div class="footer-col animate-on-scroll">
+        <h3>{{ t('contact.phone.label') }}</h3>
+        <div class="footer-phones">
+          @for (member of staff; track member.name) {
+            <a [href]="getPhoneHref(member.phone)" class="footer-phone-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <span>{{ member.phone }} — {{ member.name }}</span>
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Address & Email -->
+      <div class="footer-col animate-on-scroll">
+        <h3>{{ t('contact.address.label') }}</h3>
+        <p>1 Mart br.11<br>Jablanica 88420</p>
+        <h3 class="footer-email-label">{{ t('contact.email.label') }}</h3>
+        <a href="mailto:vikingjablanica@gmail.com" class="footer-email">vikingjablanica&#64;gmail.com</a>
+      </div>
+
+      <!-- Social -->
+      <div class="footer-col animate-on-scroll">
+        <h3>{{ t('contact.follow') }}</h3>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/_vikiing/" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="mailto:vikingjablanica@gmail.com" aria-label="Email" class="social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="https://maps.app.goo.gl/zRu2fcZb91t7H4Dg7" target="_blank" rel="noopener" aria-label="Google Maps" class="social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <img src="assets/logo.png" alt="Viking" width="40" height="40" class="footer-logo">
+      <p>&copy; 2026 Viking Jablanica. {{ t('footer.rights') }}</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING MOBILE CTA ── -->
+<div class="floating-cta">
+  <a [href]="getPhoneHref('+387 61 839 067')" class="floating-cta-call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    {{ t('cta.call') }}
+  </a>
+  <a href="https://wa.me/38761839067" target="_blank" rel="noopener" class="floating-cta-wa">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
