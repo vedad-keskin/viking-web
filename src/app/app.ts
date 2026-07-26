@@ -9,6 +9,7 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 // ── Translation dictionary ──
 const TRANSLATIONS: Record<string, Record<string, string>> = {
@@ -71,6 +72,9 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
   // Location
   'location.heading': { bs: 'LOKACIJA', en: 'LOCATION' },
   'location.open': { bs: 'Otvori u Google Maps', en: 'Open in Google Maps' },
+  'location.directions': { bs: 'Upute', en: 'Get Directions' },
+  'location.hours': { bs: 'Radno vrijeme', en: 'Working hours' },
+  'location.hours.value': { bs: '07:00 – 16:00', en: '07:00 – 16:00' },
 
   // Contact / Footer
   'contact.heading': { bs: 'KONTAKT', en: 'CONTACT' },
@@ -219,6 +223,7 @@ const SERVICES: Service[] = [
 export class App implements AfterViewInit, OnDestroy {
   private readonly el = inject(ElementRef);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly sanitizer = inject(DomSanitizer);
   private observer: IntersectionObserver | null = null;
 
   // ── State ──
@@ -230,6 +235,14 @@ export class App implements AfterViewInit, OnDestroy {
   reviews = REVIEWS;
   staff = STAFF;
   services = SERVICES;
+
+  // ── Maps ──
+  readonly mapsPlaceUrl = 'https://maps.app.goo.gl/HAHf9eef7ErCuwpx5';
+  readonly mapsDirectionsUrl =
+    'https://www.google.com/maps/dir/?api=1&destination=43.6556649,17.7605798';
+  readonly mapsEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1443.75!2d17.7605798!3d43.6556649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f5f6dca002abb%3A0x5d6753c0407494a2!2sViking!5e0!3m2!1sbs!2sba!4v1706000000000'
+  );
 
   // ── Computed ──
   otherLangFlag = computed(() => (this.lang() === 'bs' ? 'assets/flags/en.png' : 'assets/flags/bs.png'));
