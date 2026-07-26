@@ -14,7 +14,6 @@
 
     <!-- Desktop Nav -->
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a (click)="scrollTo('about')">{{ t('nav.about') }}</a>
       <a (click)="scrollTo('services')">{{ t('nav.services') }}</a>
       <a (click)="scrollTo('reviews')">{{ t('nav.reviews') }}</a>
       <a (click)="scrollTo('gallery')">{{ t('nav.gallery') }}</a>
@@ -56,7 +55,6 @@
   <!-- Mobile Nav Overlay -->
   <div class="mobile-nav-overlay" [class.active]="menuOpen()" (click)="closeMenu()"></div>
   <nav class="mobile-nav" [class.active]="menuOpen()" aria-label="Mobile navigation">
-    <a (click)="scrollTo('about')">{{ t('nav.about') }}</a>
     <a (click)="scrollTo('services')">{{ t('nav.services') }}</a>
     <a (click)="scrollTo('reviews')">{{ t('nav.reviews') }}</a>
     <a (click)="scrollTo('gallery')">{{ t('nav.gallery') }}</a>
@@ -78,7 +76,15 @@
        ═══════════════════════════════════════════════ -->
   <section id="hero" class="hero-section">
     <div class="hero-bg">
-      <img src="assets/gallery/1.webp" alt="Viking Auto Servis" loading="eager">
+      <img
+        src="assets/gallery/banner.webp"
+        alt="Viking Auto Servis"
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async">
+
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
@@ -92,52 +98,10 @@
         {{ t('hero.cta') }}
       </a>
     </div>
-    <div class="scroll-indicator" (click)="scrollTo('about')">
+    <div class="scroll-indicator" (click)="scrollTo('services')">
       <span class="scroll-text">{{ t('hero.scroll') }}</span>
       <div class="scroll-arrow">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Section Divider ═══ -->
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════
-       SECTION: O NAMA / ABOUT
-       ═══════════════════════════════════════════════ -->
-  <section id="about" class="section about-section">
-    <div class="section-container">
-      <h2 class="section-heading animate-on-scroll">
-        <span>{{ getHeaderParts('about').part1 }}</span>
-        <span>{{ getHeaderParts('about').part2 }}</span>
-      </h2>
-      <div class="about-grid">
-        <div class="about-text animate-on-scroll">
-          <p>{{ t('about.text') }}</p>
-        </div>
-        <div class="about-image animate-on-scroll">
-          <img src="assets/gallery/3.webp" alt="Jablanica" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Section Divider ═══ -->
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════
-       SECTION: STATS / WHY US
-       ═══════════════════════════════════════════════ -->
-  <section id="stats" class="stats-section">
-    <div class="section-container">
-      <div class="stats-grid">
-        @for (stat of stats; track stat.labelEn; let i = $index) {
-          <div class="stat-item animate-on-scroll">
-            <span class="stat-value">{{ getStatDisplay(i) }}</span>
-            <span class="stat-label">{{ lang() === 'bs' ? stat.labelBs : stat.labelEn }}</span>
-          </div>
-        }
       </div>
     </div>
   </section>
@@ -239,12 +203,12 @@
         </div>
       </div>
 
-      <div class="reviews-carousel animate-on-scroll" id="reviewsCarousel"
+      <div class="reviews-carousel" id="reviewsCarousel"
            (scroll)="onCarouselScroll('reviewsCarousel')"
            (mouseenter)="onReviewsMouseEnter()"
            (mouseleave)="onReviewsMouseLeave()"
            (touchstart)="onReviewsMouseEnter()"
-           (touchend)="onReviewsMouseLeave()">
+           (touchend)="onReviewsTouchEnd()">
         <div class="reviews-track">
           @for (review of reviews; track review.name) {
             <div class="review-card">
@@ -293,6 +257,25 @@
   <div class="section-divider"></div>
 
   <!-- ═══════════════════════════════════════════════
+       SECTION: STATS / WHY US
+       ═══════════════════════════════════════════════ -->
+  <section id="stats" class="stats-section">
+    <div class="section-container">
+      <div class="stats-grid">
+        @for (stat of stats; track stat.labelEn; let i = $index) {
+          <div class="stat-item animate-on-scroll">
+            <span class="stat-value">{{ getStatDisplay(i) }}</span>
+            <span class="stat-label">{{ lang() === 'bs' ? stat.labelBs : stat.labelEn }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Section Divider ═══ -->
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════
        SECTION: GALERIJA / GALLERY
        ═══════════════════════════════════════════════ -->
   <section id="gallery" class="section gallery-section">
@@ -311,30 +294,36 @@
           </button>
         </div>
       </div>
-      <div class="gallery-carousel animate-on-scroll" id="galleryCarousel" (scroll)="onCarouselScroll('galleryCarousel')">
+      <div class="gallery-carousel" id="galleryCarousel" (scroll)="onCarouselScroll('galleryCarousel')">
         <div class="gallery-track">
           <div class="gallery-item">
             <img src="assets/gallery/1.webp" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">1 / 3</span>
+              <span class="gallery-item-counter">1 / 4</span>
             </div>
           </div>
           <div class="gallery-item">
             <img src="assets/gallery/2.webp" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">2 / 3</span>
+              <span class="gallery-item-counter">2 / 4</span>
             </div>
           </div>
           <div class="gallery-item">
             <img src="assets/gallery/3.webp" alt="Jablanica" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">3 / 3</span>
+              <span class="gallery-item-counter">3 / 4</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/4.webp" alt="Viking Auto Servis" loading="lazy">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-counter">4 / 4</span>
             </div>
           </div>
         </div>
       </div>
       <div class="carousel-dots animate-on-scroll">
-        @for (img of [0, 1, 2]; track img) {
+        @for (img of [0, 1, 2, 3]; track img) {
           <button class="carousel-dot" [class.active]="activeGalleryIndex() === img" (click)="goToSlide('galleryCarousel', img)" [attr.aria-label]="'Go to image ' + (img + 1)"></button>
         }
       </div>

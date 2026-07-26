@@ -14,7 +14,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 // ── Translation dictionary ──
 const TRANSLATIONS: Record<string, Record<string, string>> = {
   // Nav
-  'nav.about': { bs: 'O nama', en: 'About' },
   'nav.services': { bs: 'Usluge', en: 'Services' },
   'nav.reviews': { bs: 'Recenzije', en: 'Reviews' },
   'nav.gallery': { bs: 'Galerija', en: 'Gallery' },
@@ -26,13 +25,6 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
   'hero.subtitle': { bs: 'Auto Servis • Jablanica', en: 'Auto Service • Jablanica' },
   'hero.cta': { bs: 'Pozovi nas', en: 'Call us' },
   'hero.scroll': { bs: 'Saznaj više', en: 'Learn more' },
-
-  // About
-  'about.heading': { bs: 'O NAMA', en: 'ABOUT US' },
-  'about.text': {
-    bs: 'Viking je porodični auto servis u srcu Jablanice. Sa dugogodišnjim iskustvom, nudimo vulkanizerske usluge, profesionalno pranje automobila i punjenje auto klima. Naša misija je pružiti brzu, pouzdanu i pristupačnu uslugu svakom klijentu — bilo da ste lokalni stanovnik ili putnik na proputovanju.',
-    en: 'Viking is a family-run auto service in the heart of Jablanica. With years of experience, we offer tire services, professional car washing, and AC recharging. Our mission is to provide fast, reliable, and affordable service to every client — whether you\'re a local or a traveler passing through.',
-  },
 
   // Stats
   'stats.years': { bs: 'Godina iskustva', en: 'Years Experience' },
@@ -154,9 +146,9 @@ const STAFF: StaffMember[] = [
     name: 'Said Keskin',
     phone: '+387 64 40 65 144',
     whatsapp: '387644065144',
-    roleBs: 'Auto klima',
-    roleEn: 'AC Specialist',
-    image: 'assets/staff/1.webp',
+    roleBs: 'Vulkanizer / Auto klime',
+    roleEn: 'Tire / AC Specialist',
+    image: 'assets/staff/1.png',
   },
   {
     name: 'Haris Ćosić',
@@ -164,7 +156,7 @@ const STAFF: StaffMember[] = [
     whatsapp: '38762581310',
     roleBs: 'Pranje auta',
     roleEn: 'Car Wash Specialist',
-    image: 'assets/staff/1.webp',
+    image: 'assets/staff/2.png',
   },
   {
     name: 'Almir Beli Keskin',
@@ -172,7 +164,7 @@ const STAFF: StaffMember[] = [
     whatsapp: '38761839067',
     roleBs: 'Vulkanizer',
     roleEn: 'Tire Specialist',
-    image: 'assets/staff/1.webp',
+    image: 'assets/staff/3.png',
   },
 ];
 
@@ -248,6 +240,7 @@ export class App implements AfterViewInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
   private statsObserver: IntersectionObserver | null = null;
   private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+  private autoPlayResumeTimeout: ReturnType<typeof setTimeout> | null = null;
   private autoPlayPaused = false;
 
   // ── State ──
@@ -342,6 +335,7 @@ export class App implements AfterViewInit, OnDestroy {
       window.removeEventListener('scroll', this.onScroll);
     }
     this.stopAutoPlay();
+    this.clearAutoPlayResumeTimeout();
   }
 
   // ── Methods ──
@@ -416,8 +410,6 @@ export class App implements AfterViewInit, OnDestroy {
   getHeaderParts(key: string): { part1: string; part2: string } {
     const isBs = this.lang() === 'bs';
     switch (key) {
-      case 'about':
-        return isBs ? { part1: 'O', part2: 'NAMA' } : { part1: 'ABOUT', part2: 'US' };
       case 'services':
         return isBs ? { part1: 'US', part2: 'LUGE' } : { part1: 'SER', part2: 'VICES' };
       case 'reviews':
@@ -583,10 +575,27 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   onReviewsMouseEnter(): void {
+    this.clearAutoPlayResumeTimeout();
     this.autoPlayPaused = true;
   }
 
   onReviewsMouseLeave(): void {
     this.autoPlayPaused = false;
+  }
+
+  onReviewsTouchEnd(): void {
+    this.clearAutoPlayResumeTimeout();
+    this.autoPlayPaused = true;
+    this.autoPlayResumeTimeout = setTimeout(() => {
+      this.autoPlayPaused = false;
+      this.autoPlayResumeTimeout = null;
+    }, 8000);
+  }
+
+  private clearAutoPlayResumeTimeout(): void {
+    if (this.autoPlayResumeTimeout) {
+      clearTimeout(this.autoPlayResumeTimeout);
+      this.autoPlayResumeTimeout = null;
+    }
   }
 }
