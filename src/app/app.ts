@@ -141,14 +141,6 @@ interface StaffMember {
 
 const STAFF: StaffMember[] = [
   {
-    name: 'Almir Beli Keskin',
-    phone: '+387 61 839 067',
-    whatsapp: '38761839067',
-    roleBs: 'Vulkanizer',
-    roleEn: 'Tire Specialist',
-    image: 'assets/staff/1.webp',
-  },
-  {
     name: 'Said Keskin',
     phone: '+387 64 40 65 144',
     whatsapp: '38764406514',
@@ -162,6 +154,14 @@ const STAFF: StaffMember[] = [
     whatsapp: '38762581310',
     roleBs: 'Pranje auta',
     roleEn: 'Car Wash Specialist',
+    image: 'assets/staff/1.webp',
+  },
+  {
+    name: 'Almir Beli Keskin',
+    phone: '+387 61 839 067',
+    whatsapp: '38761839067',
+    roleBs: 'Vulkanizer',
+    roleEn: 'Tire Specialist',
     image: 'assets/staff/1.webp',
   },
 ];
