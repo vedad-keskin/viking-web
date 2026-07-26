@@ -143,7 +143,7 @@ const STAFF: StaffMember[] = [
   {
     name: 'Said Keskin',
     phone: '+387 64 40 65 144',
-    whatsapp: '38764406514',
+    whatsapp: '387644065144',
     roleBs: 'Auto klima',
     roleEn: 'AC Specialist',
     image: 'assets/staff/1.webp',
