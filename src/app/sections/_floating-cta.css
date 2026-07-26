@@ -1,0 +1,56 @@
+/* =========================================
+   FLOATING CTA (Mobile Only)
+   ========================================= */
+.floating-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+}
+
+.floating-cta-call {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background var(--transition-fast);
+}
+
+.floating-cta-call:hover {
+  background: var(--accent-hover);
+}
+
+.floating-cta-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  padding: 0.85rem;
+  background: #25D366;
+  color: var(--white);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.floating-cta-wa:hover {
+  background: #20bd5a;
+}

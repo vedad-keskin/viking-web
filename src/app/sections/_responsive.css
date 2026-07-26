@@ -1,0 +1,154 @@
+/* =========================================
+   RESPONSIVE — Tablet (768px+)
+   ========================================= */
+@media (min-width: 768px) {
+  .section {
+    padding: var(--section-padding-tablet);
+  }
+
+  .footer-section {
+    padding: var(--section-padding-tablet);
+  }
+
+  .hero-logo img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .stats-section {
+    padding: 3.5rem 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .review-card {
+    flex: 0 0 42%;
+    max-width: 450px;
+  }
+
+  .gallery-item {
+    flex: 0 0 55%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .location-map iframe {
+    height: 440px;
+    min-height: 440px;
+  }
+
+  .location-overlay {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    right: auto;
+    width: min(360px, calc(100% - 2.5rem));
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px var(--shadow-heavy);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .footer-heading span:last-child,
+  .section-heading span:last-child {
+    margin-left: 2.5rem;
+  }
+
+  /* Back to top higher on tablet */
+  .back-to-top {
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
+
+/* =========================================
+   RESPONSIVE — Desktop (1024px+)
+   ========================================= */
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--section-padding-desktop);
+  }
+
+  .footer-section {
+    padding: var(--section-padding-desktop);
+  }
+
+  .desktop-nav {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .hero-logo img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .review-card {
+    flex: 0 0 31%;
+    max-width: 480px;
+  }
+
+  .gallery-item {
+    flex: 0 0 60%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .gallery-carousel {
+    margin: 0;
+    padding: 0;
+  }
+
+  .reviews-carousel {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide floating CTA on desktop */
+  .floating-cta {
+    display: none;
+  }
+
+  .location-map iframe {
+    height: 480px;
+    min-height: 480px;
+  }
+
+  .stats-section {
+    padding: 4rem;
+  }
+}
+
+/* =========================================
+   SAFE AREA — Bottom padding for floating CTA (mobile)
+   ========================================= */
+@media (max-width: 1023px) {
+  .footer-section {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}

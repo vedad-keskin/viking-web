@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="bs">
+<html lang="bs" data-theme="day">
 <head>
   <meta charset="utf-8">
   <title>Viking | Auto Servis Jablanica</title>
   <meta name="description" content="Viking Auto Servis Jablanica — Vulkanizerske usluge, pranje auta i punjenje auto klima. Brza i profesionalna usluga. Pozovite nas!">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
-  <meta name="theme-color" content="#0D0D0D">
+  <meta name="theme-color" content="#FAFAF8" id="meta-theme-color">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <!-- Open Graph / Instagram preview -->
   <meta property="og:type" content="website">
@@ -21,6 +21,20 @@
   <meta name="twitter:title" content="Viking | Auto Servis Jablanica">
   <meta name="twitter:description" content="Vulkanizerske usluge, pranje auta i punjenje auto klima.">
 
+  <!-- FOWT Prevention: apply saved theme before anything renders -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('viking.theme');
+      if (t === 'day' || t === 'night') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+      var meta = document.getElementById('meta-theme-color');
+      if (meta) {
+        meta.setAttribute('content', t === 'night' ? '#0D0D0D' : '#FAFAF8');
+      }
+    })();
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +42,72 @@
 
   <link rel="icon" type="image/png" href="assets/logo.png">
   <base href="/">
+
+  <!-- Splash screen styles (inline to show before Angular loads) -->
+  <style>
+    .app-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-primary, #FAFAF8);
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .app-splash.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .splash-logo {
+      width: 80px;
+      height: 80px;
+      animation: splashPulse 1.5s ease-in-out infinite;
+    }
+    .splash-text {
+      margin-top: 1rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--text-primary, #1A1614);
+    }
+    .splash-bar {
+      margin-top: 1.5rem;
+      width: 120px;
+      height: 3px;
+      background: var(--bg-secondary, #F0EEED);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .splash-bar-fill {
+      width: 40%;
+      height: 100%;
+      background: #C83C2C;
+      border-radius: 3px;
+      animation: splashSlide 1.2s ease-in-out infinite;
+    }
+    @keyframes splashPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+    @keyframes splashSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(400%); }
+    }
+  </style>
 </head>
 <body>
+  <!-- Branded splash screen (hidden by Angular after init) -->
+  <div class="app-splash" id="appSplash">
+    <img src="assets/logo.png" alt="Viking" class="splash-logo" width="80" height="80">
+    <span class="splash-text">VIKING</span>
+    <div class="splash-bar">
+      <div class="splash-bar-fill"></div>
+    </div>
+  </div>
   <app-root></app-root>
 </body>
 </html>

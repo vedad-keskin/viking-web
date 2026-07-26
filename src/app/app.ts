@@ -34,6 +34,12 @@ const TRANSLATIONS: Record<string, Record<string, string>> = {
     en: 'Viking is a family-run auto service in the heart of Jablanica. With years of experience, we offer tire services, professional car washing, and AC recharging. Our mission is to provide fast, reliable, and affordable service to every client — whether you\'re a local or a traveler passing through.',
   },
 
+  // Stats
+  'stats.years': { bs: 'Godina iskustva', en: 'Years Experience' },
+  'stats.services': { bs: 'Usluge', en: 'Services' },
+  'stats.rating': { bs: 'Google ocjena', en: 'Google Rating' },
+  'stats.clients': { bs: 'Zadovoljnih klijenata', en: 'Happy Clients' },
+
   // Services
   'services.heading': { bs: 'USLUGE', en: 'SERVICES' },
   'service.tires.name': { bs: 'Vulkanizerske usluge', en: 'Tire Services' },
@@ -215,6 +221,21 @@ const SERVICES: Service[] = [
   },
 ];
 
+// ── Stats data ──
+interface Stat {
+  value: number;
+  suffix: string;
+  labelBs: string;
+  labelEn: string;
+}
+
+const STATS: Stat[] = [
+  { value: 5, suffix: '+', labelBs: 'Godina iskustva', labelEn: 'Years Experience' },
+  { value: 3, suffix: '', labelBs: 'Usluge', labelEn: 'Services' },
+  { value: 5, suffix: '.0', labelBs: 'Google ocjena', labelEn: 'Google Rating' },
+  { value: 1000, suffix: '+', labelBs: 'Zadovoljnih klijenata', labelEn: 'Happy Clients' },
+];
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -225,16 +246,29 @@ export class App implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly sanitizer = inject(DomSanitizer);
   private observer: IntersectionObserver | null = null;
+  private statsObserver: IntersectionObserver | null = null;
+  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+  private autoPlayPaused = false;
 
   // ── State ──
   lang = signal<'bs' | 'en'>('bs');
   menuOpen = signal(false);
   headerScrolled = signal(false);
+  theme = signal<'day' | 'night'>('day');
+  showBackToTop = signal(false);
+
+  // ── Stats animation ──
+  statsAnimated = signal(false);
+  animatedStatValues = signal<number[]>([0, 0, 0, 0]);
 
   // ── Data ──
   reviews = REVIEWS;
   staff = STAFF;
   services = SERVICES;
+  stats = STATS;
+
+  // ── Theme computed ──
+  isNight = computed(() => this.theme() === 'night');
 
   // ── Maps ──
   readonly mapsPlaceUrl = 'https://maps.app.goo.gl/HAHf9eef7ErCuwpx5';
@@ -259,6 +293,22 @@ export class App implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
+    // Load saved theme
+    const savedTheme = localStorage.getItem('viking.theme');
+    if (savedTheme === 'day' || savedTheme === 'night') {
+      this.theme.set(savedTheme);
+    }
+    this.applyTheme(this.theme());
+
+    // Hide splash screen
+    setTimeout(() => {
+      const splash = document.getElementById('appSplash');
+      if (splash) {
+        splash.classList.add('hidden');
+        setTimeout(() => splash.remove(), 600);
+      }
+    }, 800);
+
     // Scroll animations
     this.observer = new IntersectionObserver(
       (entries) => {
@@ -275,22 +325,48 @@ export class App implements AfterViewInit, OnDestroy {
     const animatedElements = this.el.nativeElement.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach((el: Element) => this.observer?.observe(el));
 
-    // Header scroll listener
+    // Stats counter observer
+    this.setupStatsObserver();
+
+    // Header scroll listener + back-to-top
     window.addEventListener('scroll', this.onScroll, { passive: true });
+
+    // Auto-play carousel
+    this.startAutoPlay();
   }
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
+    this.statsObserver?.disconnect();
     if (isPlatformBrowser(this.platformId)) {
       window.removeEventListener('scroll', this.onScroll);
     }
+    this.stopAutoPlay();
   }
 
   // ── Methods ──
   private onScroll = (): void => {
     this.headerScrolled.set(window.scrollY > 50);
+    this.showBackToTop.set(window.scrollY > window.innerHeight);
   };
 
+  // ── Theme ──
+  toggleTheme(): void {
+    const newTheme = this.theme() === 'day' ? 'night' : 'day';
+    this.theme.set(newTheme);
+    this.applyTheme(newTheme);
+    localStorage.setItem('viking.theme', newTheme);
+  }
+
+  private applyTheme(theme: 'day' | 'night'): void {
+    document.documentElement.setAttribute('data-theme', theme);
+    const meta = document.getElementById('meta-theme-color');
+    if (meta) {
+      meta.setAttribute('content', theme === 'night' ? '#0D0D0D' : '#FAFAF8');
+    }
+  }
+
+  // ── Lang ──
   toggleLang(): void {
     this.lang.update((l) => (l === 'bs' ? 'en' : 'bs'));
   }
@@ -309,6 +385,10 @@ export class App implements AfterViewInit, OnDestroy {
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getPhoneHref(phone: string): string {
@@ -353,6 +433,61 @@ export class App implements AfterViewInit, OnDestroy {
       default:
         return { part1: '', part2: '' };
     }
+  }
+
+  // ── Stats Counter Animation ──
+  private setupStatsObserver(): void {
+    const statsSection = this.el.nativeElement.querySelector('#stats');
+    if (!statsSection) return;
+
+    this.statsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !this.statsAnimated()) {
+            this.statsAnimated.set(true);
+            this.animateStats();
+            this.statsObserver?.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    this.statsObserver.observe(statsSection);
+  }
+
+  private animateStats(): void {
+    const duration = 2000;
+    const fps = 60;
+    const totalFrames = duration / (1000 / fps);
+    let frame = 0;
+
+    const animate = () => {
+      frame++;
+      const progress = Math.min(frame / totalFrames, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+
+      const values = this.stats.map((stat) =>
+        Math.round(stat.value * eased)
+      );
+      this.animatedStatValues.set(values);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+
+  getStatDisplay(index: number): string {
+    const val = this.animatedStatValues()[index];
+    const stat = this.stats[index];
+    // Special formatting for the rating (5.0)
+    if (stat.suffix === '.0') {
+      return val + stat.suffix;
+    }
+    return val + stat.suffix;
   }
 
   // ── Carousel Navigation ──
@@ -429,5 +564,29 @@ export class App implements AfterViewInit, OnDestroy {
   onCarouselScroll(carouselId: string): void {
     this.updateCarouselIndex(carouselId);
   }
-}
 
+  // ── Auto-play Reviews Carousel ──
+  private startAutoPlay(): void {
+    this.autoPlayInterval = setInterval(() => {
+      if (this.autoPlayPaused) return;
+      const currentIndex = this.activeReviewIndex();
+      const nextIndex = (currentIndex + 1) % this.reviews.length;
+      this.goToSlide('reviewsCarousel', nextIndex);
+    }, 5000);
+  }
+
+  private stopAutoPlay(): void {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
+  }
+
+  onReviewsMouseEnter(): void {
+    this.autoPlayPaused = true;
+  }
+
+  onReviewsMouseLeave(): void {
+    this.autoPlayPaused = false;
+  }
+}

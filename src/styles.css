@@ -50,31 +50,10 @@ button {
   color: inherit;
 }
 
-/* === Design Tokens === */
+/* =========================================
+   DESIGN TOKENS — Shared (theme-independent)
+   ========================================= */
 :root {
-  /* Colors */
-  --bg-primary: #0D0D0D;
-  --bg-secondary: #141414;
-  --bg-card: #1A1A1A;
-  --bg-card-hover: #222222;
-
-  --accent: #C83C2C;
-  --accent-hover: #E04A38;
-  --accent-glow: rgba(200, 60, 44, 0.3);
-
-  --text-primary: #F5F0EB;
-  --text-secondary: #A8A29E;
-  --text-muted: #6B6560;
-
-  --gold: #F5A623;
-  --gold-light: #FFD700;
-
-  --white: #FFFFFF;
-  --black: #000000;
-
-  --glass-bg: rgba(20, 20, 20, 0.85);
-  --glass-border: rgba(245, 240, 235, 0.08);
-
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'DM Sans', sans-serif;
@@ -94,6 +73,114 @@ button {
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-full: 9999px;
+
+  /* Brand (constant across themes) */
+  --accent: #C83C2C;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
+/* =========================================
+   DAY THEME (Default)
+   ========================================= */
+[data-theme="day"] {
+  --bg-primary:      #FAFAF8;
+  --bg-secondary:    #F0EEED;
+  --bg-card:         #FFFFFF;
+  --bg-card-hover:   #F5F3F1;
+
+  --accent-hover:    #B5321F;
+  --accent-glow:     rgba(200, 60, 44, 0.15);
+
+  --text-primary:    #1A1614;
+  --text-secondary:  #6B6560;
+  --text-muted:      #A8A29E;
+
+  --gold:            #E89A1D;
+  --gold-light:      #FFD700;
+
+  --glass-bg:        rgba(250, 250, 248, 0.92);
+  --glass-border:    rgba(26, 22, 20, 0.1);
+
+  --shadow-color:    rgba(26, 22, 20, 0.08);
+  --shadow-heavy:    rgba(26, 22, 20, 0.12);
+
+  --hero-overlay-top:    rgba(250, 250, 248, 0.65);
+  --hero-overlay-mid:    rgba(250, 250, 248, 0.55);
+  --hero-overlay-bottom: rgba(250, 250, 248, 0.90);
+
+  --divider-gradient: linear-gradient(90deg, transparent, rgba(200, 60, 44, 0.2), transparent);
+
+  --map-filter: none;
+  --logo-filter: brightness(0);
+
+  --scrollbar-track: #F0EEED;
+  --scrollbar-thumb: #C4BFB9;
+  --scrollbar-thumb-hover: #A8A29E;
+}
+
+/* =========================================
+   NIGHT THEME
+   ========================================= */
+[data-theme="night"] {
+  --bg-primary:      #0D0D0D;
+  --bg-secondary:    #141414;
+  --bg-card:         #1A1A1A;
+  --bg-card-hover:   #222222;
+
+  --accent-hover:    #E04A38;
+  --accent-glow:     rgba(200, 60, 44, 0.3);
+
+  --text-primary:    #F5F0EB;
+  --text-secondary:  #A8A29E;
+  --text-muted:      #6B6560;
+
+  --gold:            #F5A623;
+  --gold-light:      #FFD700;
+
+  --glass-bg:        rgba(20, 20, 20, 0.85);
+  --glass-border:    rgba(245, 240, 235, 0.08);
+
+  --shadow-color:    rgba(0, 0, 0, 0.25);
+  --shadow-heavy:    rgba(0, 0, 0, 0.45);
+
+  --hero-overlay-top:    rgba(13, 13, 13, 0.85);
+  --hero-overlay-mid:    rgba(13, 13, 13, 0.75);
+  --hero-overlay-bottom: rgba(13, 13, 13, 0.95);
+
+  --divider-gradient: linear-gradient(90deg, transparent, rgba(200, 60, 44, 0.25), transparent);
+
+  --map-filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+  --logo-filter: none;
+
+  --scrollbar-track: #0D0D0D;
+  --scrollbar-thumb: #6B6560;
+  --scrollbar-thumb-hover: #A8A29E;
+}
+
+/* =========================================
+   SMOOTH THEME TRANSITION
+   ========================================= */
+body,
+body * {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
+}
+
+/* Opt-out for elements that have their own transitions */
+.animate-on-scroll,
+.hero-bg img,
+.gallery-item img,
+.about-image img,
+.carousel-arrow,
+.btn,
+.hero-cta-btn,
+.service-card,
+.review-card,
+.team-card,
+.team-photo {
+  transition-property: all;
 }
 
 /* === Reduced Motion === */
@@ -113,14 +200,14 @@ button {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--scrollbar-thumb);
   border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* === Selection === */

@@ -1,0 +1,8 @@
+/* =========================================
+   SECTION DIVIDERS
+   ========================================= */
+.section-divider {
+  height: 1px;
+  background: var(--divider-gradient);
+  margin: 0;
+}
