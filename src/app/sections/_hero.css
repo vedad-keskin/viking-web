@@ -119,10 +119,10 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--text-muted);
+  color: var(--hero-scroll-color);
 }
 
 .scroll-arrow {
   animation: scrollBounce 2s ease-in-out infinite;
-  color: var(--text-muted);
+  color: var(--hero-scroll-color);
 }
