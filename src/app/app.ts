@@ -376,9 +376,16 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   // ── Methods ──
+  private scrollTicking = false;
+
   private onScroll = (): void => {
-    this.headerScrolled.set(window.scrollY > 50);
-    this.showBackToTop.set(window.scrollY > window.innerHeight);
+    if (this.scrollTicking) return;
+    this.scrollTicking = true;
+    requestAnimationFrame(() => {
+      this.headerScrolled.set(window.scrollY > 50);
+      this.showBackToTop.set(window.scrollY > window.innerHeight);
+      this.scrollTicking = false;
+    });
   };
 
   // ── Theme ──
