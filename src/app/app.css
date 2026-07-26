@@ -70,21 +70,28 @@
 
 .section-heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 10vw, 5rem);
-  font-weight: 800;
+  font-size: clamp(2.75rem, 10vw, 5.5rem);
+  font-weight: 900;
   letter-spacing: 0.05em;
   margin-bottom: 2.5rem;
-  line-height: 1;
+  line-height: 0.95;
 }
 
-.section-heading.outlined {
+.section-heading span:first-child {
+  display: block;
+  color: var(--text-primary);
+}
+
+.section-heading span:last-child {
+  display: block;
   color: transparent;
   -webkit-text-stroke: 1.5px var(--text-muted);
   text-stroke: 1.5px var(--text-muted);
+  margin-left: 0.75rem;
   transition: -webkit-text-stroke-color var(--transition-base);
 }
 
-.section-heading.outlined.visible {
+.section-heading.visible span:last-child {
   -webkit-text-stroke-color: var(--text-secondary);
   text-stroke-color: var(--text-secondary);
 }
@@ -1347,8 +1354,9 @@ header.menu-open .hamburger-line:last-child {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .footer-heading span:last-child {
-    margin-left: 3rem;
+  .footer-heading span:last-child,
+  .section-heading span:last-child {
+    margin-left: 2.5rem;
   }
 }
 

@@ -84,7 +84,10 @@
   <!-- ── SECTION 2: O NAMA / ABOUT ── -->
   <section id="about" class="section about-section">
     <div class="section-container">
-      <h2 class="section-heading outlined animate-on-scroll">{{ t('about.heading') }}</h2>
+      <h2 class="section-heading animate-on-scroll">
+        <span>{{ getHeaderParts('about').part1 }}</span>
+        <span>{{ getHeaderParts('about').part2 }}</span>
+      </h2>
       <div class="about-grid">
         <div class="about-text animate-on-scroll">
           <p>{{ t('about.text') }}</p>
@@ -99,7 +102,10 @@
   <!-- ── SECTION 3: USLUGE / SERVICES ── -->
   <section id="services" class="section services-section">
     <div class="section-container">
-      <h2 class="section-heading outlined animate-on-scroll">{{ t('services.heading') }}</h2>
+      <h2 class="section-heading animate-on-scroll">
+        <span>{{ getHeaderParts('services').part1 }}</span>
+        <span>{{ getHeaderParts('services').part2 }}</span>
+      </h2>
       <div class="services-grid">
         @for (service of services; track service.nameBs) {
           <div class="service-card animate-on-scroll">
@@ -162,7 +168,10 @@
   <!-- ── SECTION 4: RECENZIJE / REVIEWS ── -->
   <section id="reviews" class="section reviews-section">
     <div class="section-container">
-      <h2 class="section-heading outlined animate-on-scroll">{{ t('reviews.heading') }}</h2>
+      <h2 class="section-heading animate-on-scroll">
+        <span>{{ getHeaderParts('reviews').part1 }}</span>
+        <span>{{ getHeaderParts('reviews').part2 }}</span>
+      </h2>
       <div class="reviews-header animate-on-scroll">
         <div class="reviews-badge">
           <div class="reviews-rating">
@@ -235,7 +244,10 @@
   <section id="gallery" class="section gallery-section">
     <div class="section-container">
       <div class="gallery-header">
-        <h2 class="section-heading outlined animate-on-scroll">{{ t('gallery.heading') }}</h2>
+        <h2 class="section-heading animate-on-scroll">
+          <span>{{ getHeaderParts('gallery').part1 }}</span>
+          <span>{{ getHeaderParts('gallery').part2 }}</span>
+        </h2>
         <div class="carousel-nav animate-on-scroll">
           <button class="carousel-arrow" (click)="scrollCarousel('galleryCarousel', 'prev')" aria-label="Previous image">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
@@ -278,7 +290,10 @@
   <!-- ── SECTION 6: NAŠ TIM / OUR TEAM ── -->
   <section id="team" class="section team-section">
     <div class="section-container">
-      <h2 class="section-heading outlined animate-on-scroll">{{ t('team.heading') }}</h2>
+      <h2 class="section-heading animate-on-scroll">
+        <span>{{ getHeaderParts('team').part1 }}</span>
+        <span>{{ getHeaderParts('team').part2 }}</span>
+      </h2>
       <div class="team-grid">
         @for (member of staff; track member.name) {
           <div class="team-card animate-on-scroll">
@@ -306,7 +321,10 @@
   <!-- ── SECTION 7: LOKACIJA / LOCATION ── -->
   <section id="location" class="section location-section">
     <div class="section-container">
-      <h2 class="section-heading outlined animate-on-scroll">{{ t('location.heading') }}</h2>
+      <h2 class="section-heading animate-on-scroll">
+        <span>{{ getHeaderParts('location').part1 }}</span>
+        <span>{{ getHeaderParts('location').part2 }}</span>
+      </h2>
       <div class="location-grid">
         <div class="location-info animate-on-scroll">
           <div class="location-address">
@@ -342,9 +360,9 @@
 <!-- ── SECTION 8: KONTAKT / FOOTER ── -->
 <footer id="contact" class="footer-section">
   <div class="section-container">
-    <h2 class="footer-heading animate-on-scroll">
-      <span>{{ t('contact.heading').split('').slice(0, 3).join('') }}</span>
-      <span>{{ t('contact.heading').split('').slice(3).join('') }}</span>
+    <h2 class="section-heading animate-on-scroll">
+      <span>{{ getHeaderParts('contact').part1 }}</span>
+      <span>{{ getHeaderParts('contact').part2 }}</span>
     </h2>
 
     <div class="footer-grid">

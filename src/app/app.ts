@@ -319,6 +319,29 @@ export class App implements AfterViewInit, OnDestroy {
       .toUpperCase();
   }
 
+  // ── Header Split Parts ──
+  getHeaderParts(key: string): { part1: string; part2: string } {
+    const isBs = this.lang() === 'bs';
+    switch (key) {
+      case 'about':
+        return isBs ? { part1: 'O', part2: 'NAMA' } : { part1: 'ABOUT', part2: 'US' };
+      case 'services':
+        return isBs ? { part1: 'US', part2: 'LUGE' } : { part1: 'SER', part2: 'VICES' };
+      case 'reviews':
+        return isBs ? { part1: 'RECEN', part2: 'ZIJE' } : { part1: 'RE', part2: 'VIEWS' };
+      case 'gallery':
+        return isBs ? { part1: 'GALE', part2: 'RIJA' } : { part1: 'GAL', part2: 'LERY' };
+      case 'team':
+        return isBs ? { part1: 'NAŠ', part2: 'TIM' } : { part1: 'OUR', part2: 'TEAM' };
+      case 'location':
+        return isBs ? { part1: 'LOKA', part2: 'CIJA' } : { part1: 'LOCA', part2: 'TION' };
+      case 'contact':
+        return isBs ? { part1: 'KON', part2: 'TAKT' } : { part1: 'CON', part2: 'TACT' };
+      default:
+        return { part1: '', part2: '' };
+    }
+  }
+
   // ── Carousel Navigation ──
   activeReviewIndex = signal(0);
   activeGalleryIndex = signal(0);
