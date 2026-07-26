@@ -318,4 +318,80 @@ export class App implements AfterViewInit, OnDestroy {
       .substring(0, 2)
       .toUpperCase();
   }
+
+  // ── Carousel Navigation ──
+  activeReviewIndex = signal(0);
+  activeGalleryIndex = signal(0);
+
+  scrollCarousel(carouselId: string, direction: 'prev' | 'next'): void {
+    const carousel = this.el.nativeElement.querySelector(`#${carouselId}`);
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.reviews-track, .gallery-track') as HTMLElement;
+    if (!track) return;
+
+    const firstChild = track.firstElementChild as HTMLElement;
+    if (!firstChild) return;
+
+    const gap = parseInt(getComputedStyle(track).gap) || 16;
+    const scrollAmount = firstChild.offsetWidth + gap;
+
+    if (direction === 'next') {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    } else {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+
+    // Update active index after scroll
+    setTimeout(() => {
+      this.updateCarouselIndex(carouselId);
+    }, 400);
+  }
+
+  goToSlide(carouselId: string, index: number): void {
+    const carousel = this.el.nativeElement.querySelector(`#${carouselId}`);
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.reviews-track, .gallery-track') as HTMLElement;
+    if (!track) return;
+
+    const firstChild = track.firstElementChild as HTMLElement;
+    if (!firstChild) return;
+
+    const gap = parseInt(getComputedStyle(track).gap) || 16;
+    const scrollTo = index * (firstChild.offsetWidth + gap);
+
+    carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
+
+    if (carouselId === 'reviewsCarousel') {
+      this.activeReviewIndex.set(index);
+    } else {
+      this.activeGalleryIndex.set(index);
+    }
+  }
+
+  private updateCarouselIndex(carouselId: string): void {
+    const carousel = this.el.nativeElement.querySelector(`#${carouselId}`);
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.reviews-track, .gallery-track') as HTMLElement;
+    if (!track) return;
+
+    const firstChild = track.firstElementChild as HTMLElement;
+    if (!firstChild) return;
+
+    const gap = parseInt(getComputedStyle(track).gap) || 16;
+    const index = Math.round(carousel.scrollLeft / (firstChild.offsetWidth + gap));
+
+    if (carouselId === 'reviewsCarousel') {
+      this.activeReviewIndex.set(index);
+    } else {
+      this.activeGalleryIndex.set(index);
+    }
+  }
+
+  onCarouselScroll(carouselId: string): void {
+    this.updateCarouselIndex(carouselId);
+  }
 }
+
