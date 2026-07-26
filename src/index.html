@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="bs" data-theme="day">
+<html lang="bs" data-theme="night">
 <head>
   <meta charset="utf-8">
   <title>Viking | Auto Servis Jablanica</title>
   <meta name="description" content="Viking Auto Servis Jablanica — Vulkanizerske usluge, pranje auta i punjenje auto klima. Brza i profesionalna usluga. Pozovite nas!">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
-  <meta name="theme-color" content="#FAFAF8" id="meta-theme-color">
+  <meta name="theme-color" content="#0D0D0D" id="meta-theme-color">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -24,7 +24,7 @@
   <!-- FOWT Prevention: apply saved theme before anything renders -->
   <script>
     (function() {
-      var t = localStorage.getItem('viking.theme');
+      var t = localStorage.getItem('viking.theme') || 'night';
       if (t === 'day' || t === 'night') {
         document.documentElement.setAttribute('data-theme', t);
       }

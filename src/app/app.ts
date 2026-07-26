@@ -283,7 +283,7 @@ export class App implements AfterViewInit, OnDestroy {
   lang = signal<'bs' | 'en'>('bs');
   menuOpen = signal(false);
   headerScrolled = signal(false);
-  theme = signal<'day' | 'night'>('day');
+  theme = signal<'day' | 'night'>('night');
   showBackToTop = signal(false);
 
   // ── Stats animation ──
