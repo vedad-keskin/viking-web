@@ -121,6 +121,27 @@ button {
   --scrollbar-track: #F0EEED;
   --scrollbar-thumb: #C4BFB9;
   --scrollbar-thumb-hover: #A8A29E;
+
+  --service-overlay-0: rgba(250, 250, 248, 0.96);
+  --service-overlay-40: rgba(250, 250, 248, 0.78);
+  --service-overlay-65: rgba(250, 250, 248, 0.28);
+  --service-overlay-100: rgba(250, 250, 248, 0.08);
+  --service-overlay-hover-0: rgba(250, 250, 248, 0.98);
+  --service-overlay-hover-45: rgba(250, 250, 248, 0.84);
+  --service-overlay-hover-70: rgba(250, 250, 248, 0.35);
+  --service-overlay-hover-100: rgba(250, 250, 248, 0.12);
+  --service-title-color: #000000;
+  --service-desc-color: #6B6560;
+  --service-name-color: #1A1614;
+  --service-chip-bg: rgba(255, 255, 255, 0.75);
+  --service-chip-border: rgba(26, 22, 20, 0.12);
+  --service-chip-hover-bg: rgba(255, 255, 255, 0.9);
+  --service-chip-hover-border: rgba(26, 22, 20, 0.18);
+  --service-btn-bg: rgba(26, 22, 20, 0.06);
+  --service-btn-border: rgba(26, 22, 20, 0.15);
+  --service-btn-color: #1A1614;
+  --service-photo-border: rgba(26, 22, 20, 0.2);
+  --service-title-shadow: 0 1px 4px rgba(250, 250, 248, 0.6);
 }
 
 /* =========================================
@@ -163,6 +184,27 @@ button {
   --scrollbar-track: #0D0D0D;
   --scrollbar-thumb: #6B6560;
   --scrollbar-thumb-hover: #A8A29E;
+
+  --service-overlay-0: rgba(0, 0, 0, 0.92);
+  --service-overlay-40: rgba(0, 0, 0, 0.6);
+  --service-overlay-65: rgba(0, 0, 0, 0.15);
+  --service-overlay-100: rgba(0, 0, 0, 0.05);
+  --service-overlay-hover-0: rgba(0, 0, 0, 0.95);
+  --service-overlay-hover-45: rgba(0, 0, 0, 0.65);
+  --service-overlay-hover-70: rgba(0, 0, 0, 0.2);
+  --service-overlay-hover-100: rgba(0, 0, 0, 0.08);
+  --service-title-color: #FFFFFF;
+  --service-desc-color: rgba(255, 255, 255, 0.75);
+  --service-name-color: #FFFFFF;
+  --service-chip-bg: rgba(255, 255, 255, 0.08);
+  --service-chip-border: rgba(255, 255, 255, 0.1);
+  --service-chip-hover-bg: rgba(255, 255, 255, 0.14);
+  --service-chip-hover-border: rgba(255, 255, 255, 0.18);
+  --service-btn-bg: rgba(255, 255, 255, 0.06);
+  --service-btn-border: rgba(255, 255, 255, 0.15);
+  --service-btn-color: #FFFFFF;
+  --service-photo-border: rgba(255, 255, 255, 0.25);
+  --service-title-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* =========================================
