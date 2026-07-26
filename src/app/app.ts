@@ -169,15 +169,22 @@ const STAFF: StaffMember[] = [
 ];
 
 // ── Service data ──
+interface ServiceContact {
+  name: string;
+  roleBs: string;
+  roleEn: string;
+  phone: string;
+  whatsapp: string;
+  image: string;
+}
+
 interface Service {
   nameBs: string;
   nameEn: string;
   descBs: string;
   descEn: string;
-  icon: string;
-  contactName: string;
-  phone: string;
-  whatsapp: string;
+  image: string;
+  contacts: ServiceContact[];
 }
 
 const SERVICES: Service[] = [
@@ -186,30 +193,59 @@ const SERVICES: Service[] = [
     nameEn: 'Tire Services',
     descBs: 'Zamjena, balansiranje i popravka guma za sve tipove vozila. Brzo i profesionalno.',
     descEn: 'Tire replacement, balancing, and repair for all vehicle types. Fast and professional.',
-    icon: 'tire',
-    contactName: 'Almir Beli Keskin',
-    phone: '+387 61 839 067',
-    whatsapp: '38761839067',
+    image: 'assets/services/ser1.webp',
+    contacts: [
+      {
+        name: 'Almir Beli Keskin',
+        roleBs: 'Vulkanizer',
+        roleEn: 'Tire Specialist',
+        phone: '+387 61 839 067',
+        whatsapp: '38761839067',
+        image: 'assets/staff/3.png',
+      },
+      {
+        name: 'Said Keskin',
+        roleBs: 'Vulkanizer',
+        roleEn: 'Tire Specialist',
+        phone: '+387 64 40 65 144',
+        whatsapp: '387644065144',
+        image: 'assets/staff/1.png',
+      },
+    ],
   },
   {
     nameBs: 'Pranje automobila',
     nameEn: 'Car Wash',
     descBs: 'Kompletno unutrašnje i vanjsko pranje vašeg automobila. Detaljno i temeljito.',
     descEn: 'Complete interior and exterior car washing. Detailed and thorough.',
-    icon: 'wash',
-    contactName: 'Haris Ćosić',
-    phone: '+387 62 581 310',
-    whatsapp: '38762581310',
+    image: 'assets/services/ser2.webp',
+    contacts: [
+      {
+        name: 'Haris Ćosić',
+        roleBs: 'Pranje auta',
+        roleEn: 'Car Wash Specialist',
+        phone: '+387 62 581 310',
+        whatsapp: '38762581310',
+        image: 'assets/staff/2.png',
+      },
+    ],
   },
   {
     nameBs: 'Punjenje auto klima',
     nameEn: 'AC Recharge',
     descBs: 'Punjenje i servis klima uređaja za sve marke automobila. Brza usluga.',
     descEn: 'AC recharge and service for all car brands. Fast service.',
-    icon: 'ac',
-    contactName: 'Said Keskin',
-    phone: '+387 64 40 65 144',
-    whatsapp: '38764406514',
+    image: 'assets/services/ser4.webp',
+    contacts: [
+      {
+        name: 'Said Keskin',
+        roleBs: 'Auto klima',
+        roleEn: 'AC Specialist',
+        phone: '+387 64 40 65 144',
+        whatsapp: '387644065144',
+        image: 'assets/staff/1.png',
+      },
+    ],
   },
 ];
 
@@ -268,7 +304,8 @@ export class App implements AfterViewInit, OnDestroy {
   readonly mapsDirectionsUrl =
     'https://www.google.com/maps/dir/?api=1&destination=43.6556649,17.7605798';
   readonly mapsEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1443.75!2d17.7605798!3d43.6556649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f5f6dca002abb%3A0x5d6753c0407494a2!2sViking!5e0!3m2!1sbs!2sba!4v1706000000000'
+    // Center slightly south of the pin so the marker sits higher in the viewport
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1200!2d17.7605798!3d43.65535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475f5f6dca002abb%3A0x5d6753c0407494a2!2sViking!5e0!3m2!1sbs!2sba!4v1706000000000'
   );
 
   // ── Computed ──

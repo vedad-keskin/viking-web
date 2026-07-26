@@ -106,9 +106,11 @@ button {
   --shadow-color:    rgba(26, 22, 20, 0.08);
   --shadow-heavy:    rgba(26, 22, 20, 0.12);
 
-  --hero-overlay-top:    rgba(250, 250, 248, 0.65);
-  --hero-overlay-mid:    rgba(250, 250, 248, 0.55);
-  --hero-overlay-bottom: rgba(250, 250, 248, 0.90);
+  --hero-overlay-top:    rgba(250, 250, 248, 0.40);
+  --hero-overlay-mid:    rgba(250, 250, 248, 0.30);
+  --hero-overlay-bottom: rgba(250, 250, 248, 0.70);
+  --hero-title-color:    #000000;
+  --hero-subtitle-color: #000000;
 
   --divider-gradient: linear-gradient(90deg, transparent, rgba(200, 60, 44, 0.2), transparent);
 
@@ -148,10 +150,12 @@ button {
   --hero-overlay-top:    rgba(13, 13, 13, 0.85);
   --hero-overlay-mid:    rgba(13, 13, 13, 0.75);
   --hero-overlay-bottom: rgba(13, 13, 13, 0.95);
+  --hero-title-color:    #F5F0EB;
+  --hero-subtitle-color: #A8A29E;
 
   --divider-gradient: linear-gradient(90deg, transparent, rgba(200, 60, 44, 0.25), transparent);
 
-  --map-filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+  --map-filter: brightness(0.72) contrast(1.05) saturate(0.85);
   --logo-filter: none;
 
   --scrollbar-track: #0D0D0D;

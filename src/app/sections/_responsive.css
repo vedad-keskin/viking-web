@@ -24,8 +24,41 @@
     padding: 3.5rem 2rem;
   }
 
+  /* Services: 3 columns, square cards */
   .services-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .service-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .service-title {
+    font-size: 1.15rem;
+  }
+
+  .service-desc {
+    font-size: 0.78rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .service-contact-photo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .service-contact-name {
+    font-size: 0.7rem;
+  }
+
+  .service-contact-role {
+    font-size: 0.55rem;
+  }
+
+  .service-btn {
+    width: 28px;
+    height: 28px;
   }
 
   .review-card {
@@ -48,18 +81,14 @@
   }
 
   .location-overlay {
-    position: absolute;
-    left: 1.25rem;
-    bottom: 1.25rem;
-    right: auto;
-    width: min(360px, calc(100% - 2.5rem));
-    border: 1px solid var(--glass-border);
-    border-top: 1px solid var(--glass-border);
-    border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-card) 92%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 12px 40px var(--shadow-heavy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 1.25rem 2rem;
+  }
+
+  .location-actions {
+    grid-column: 1 / -1;
   }
 
   .footer-grid {
@@ -131,6 +160,38 @@
   .location-map iframe {
     height: 480px;
     min-height: 480px;
+  }
+
+  /* Services: refined desktop square */
+  .service-card {
+    aspect-ratio: 1 / 1;
+  }
+
+  .service-title {
+    font-size: 1.35rem;
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .service-content {
+    padding: 1.75rem;
+  }
+
+  .service-contact-photo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .service-contact-name {
+    font-size: 0.75rem;
+  }
+
+  .service-btn {
+    width: 30px;
+    height: 30px;
   }
 
   .stats-section {

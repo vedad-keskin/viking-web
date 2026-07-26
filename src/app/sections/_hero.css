@@ -61,10 +61,7 @@
   letter-spacing: 0.15em;
   line-height: 1;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--hero-title-color);
 }
 
 .hero-subtitle {
@@ -73,7 +70,7 @@
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--hero-subtitle-color);
   margin-bottom: 2.5rem;
 }
 
