@@ -148,7 +148,7 @@ const STAFF: StaffMember[] = [
     whatsapp: '387644065144',
     roleBs: 'Vulkanizer / Auto klime',
     roleEn: 'Tire / AC Specialist',
-    image: 'assets/staff/1.webp',
+    image: 'assets/staff/1.webp?v=2',
   },
   {
     name: 'Haris Ćosić',
@@ -217,7 +217,7 @@ const SERVICES: Service[] = [
         roleEn: 'Tire Specialist',
         phone: '+387 64 40 65 144',
         whatsapp: '387644065144',
-        image: 'assets/staff/1.webp',
+        image: 'assets/staff/1.webp?v=2',
       },
     ],
   },
@@ -251,7 +251,7 @@ const SERVICES: Service[] = [
         roleEn: 'AC Specialist',
         phone: '+387 64 40 65 144',
         whatsapp: '387644065144',
-        image: 'assets/staff/1.webp',
+        image: 'assets/staff/1.webp?v=2',
       },
     ],
   },
@@ -260,7 +260,7 @@ const SERVICES: Service[] = [
     nameEn: 'Car Interior Upholstery',
     descBs: 'Presvlačenje siceva, volana i plafona auta. Vrhunski materijali i precizna izrada.',
     descEn: 'Professional upholstery of car seats, steering wheels, and headliners with premium materials.',
-    image: 'assets/services/ser4.webp',
+    image: 'assets/services/ser4.webp?v=2',
     contacts: [
       {
         name: 'Ado Bužim',
