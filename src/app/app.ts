@@ -148,7 +148,7 @@ const STAFF: StaffMember[] = [
     whatsapp: '387644065144',
     roleBs: 'Vulkanizer / Auto klime',
     roleEn: 'Tire / AC Specialist',
-    image: 'assets/staff/1.png',
+    image: 'assets/staff/1.webp',
   },
   {
     name: 'Haris Ćosić',
@@ -164,7 +164,15 @@ const STAFF: StaffMember[] = [
     whatsapp: '38761839067',
     roleBs: 'Vulkanizer',
     roleEn: 'Tire Specialist',
-    image: 'assets/staff/3.png',
+    image: 'assets/staff/3.webp',
+  },
+  {
+    name: 'Ado Bužim',
+    phone: '+387 61 823 875',
+    whatsapp: '38761823875',
+    roleBs: 'Presvlačenje siceva, volana i plafona',
+    roleEn: 'Upholstery Specialist',
+    image: 'assets/staff/4.png',
   },
 ];
 
@@ -201,7 +209,7 @@ const SERVICES: Service[] = [
         roleEn: 'Tire Specialist',
         phone: '+387 61 839 067',
         whatsapp: '38761839067',
-        image: 'assets/staff/3.png',
+        image: 'assets/staff/3.webp',
       },
       {
         name: 'Said Keskin',
@@ -209,7 +217,7 @@ const SERVICES: Service[] = [
         roleEn: 'Tire Specialist',
         phone: '+387 64 40 65 144',
         whatsapp: '387644065144',
-        image: 'assets/staff/1.png',
+        image: 'assets/staff/1.webp',
       },
     ],
   },
@@ -235,7 +243,7 @@ const SERVICES: Service[] = [
     nameEn: 'AC Recharge',
     descBs: 'Punjenje i servis klima uređaja za sve marke automobila. Brza usluga.',
     descEn: 'AC recharge and service for all car brands. Fast service.',
-    image: 'assets/services/ser4.webp',
+    image: 'assets/services/ser3.webp',
     contacts: [
       {
         name: 'Said Keskin',
@@ -243,7 +251,24 @@ const SERVICES: Service[] = [
         roleEn: 'AC Specialist',
         phone: '+387 64 40 65 144',
         whatsapp: '387644065144',
-        image: 'assets/staff/1.png',
+        image: 'assets/staff/1.webp',
+      },
+    ],
+  },
+  {
+    nameBs: 'Presvlačenje siceva, volana i plafona',
+    nameEn: 'Car Interior Upholstery',
+    descBs: 'Presvlačenje siceva, volana i plafona auta. Vrhunski materijali i precizna izrada.',
+    descEn: 'Professional upholstery of car seats, steering wheels, and headliners with premium materials.',
+    image: 'assets/services/ser4.webp',
+    contacts: [
+      {
+        name: 'Ado Bužim',
+        roleBs: 'Auto tapetar',
+        roleEn: 'Upholstery Specialist',
+        phone: '+387 61 823 875',
+        whatsapp: '38761823875',
+        image: 'assets/staff/3.png',
       },
     ],
   },
@@ -259,7 +284,7 @@ interface Stat {
 
 const STATS: Stat[] = [
   { value: 5, suffix: '+', labelBs: 'Godina iskustva', labelEn: 'Years Experience' },
-  { value: 3, suffix: '', labelBs: 'Usluge', labelEn: 'Services' },
+  { value: 4, suffix: '', labelBs: 'Usluge', labelEn: 'Services' },
   { value: 5, suffix: '.0', labelBs: 'Google ocjena', labelEn: 'Google Rating' },
   { value: 1000, suffix: '+', labelBs: 'Zadovoljnih klijenata', labelEn: 'Happy Clients' },
 ];

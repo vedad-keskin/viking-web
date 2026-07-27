@@ -24,9 +24,9 @@
     padding: 3.5rem 2rem;
   }
 
-  /* Services: 3 columns, square cards */
+  /* Services: 2 columns on tablet, 4 on desktop */
   .services-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
 
@@ -72,7 +72,7 @@
   }
 
   .team-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .location-map iframe {
@@ -163,6 +163,14 @@
   }
 
   /* Services: refined desktop square */
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .service-card {
     aspect-ratio: 1 / 1;
   }
