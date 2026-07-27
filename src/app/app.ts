@@ -268,7 +268,7 @@ const SERVICES: Service[] = [
         roleEn: 'Upholstery Specialist',
         phone: '+387 61 823 875',
         whatsapp: '38761823875',
-        image: 'assets/staff/3.png',
+        image: 'assets/staff/4.png',
       },
     ],
   },
@@ -283,10 +283,10 @@ interface Stat {
 }
 
 const STATS: Stat[] = [
-  { value: 5, suffix: '+', labelBs: 'Godina iskustva', labelEn: 'Years Experience' },
+  { value: 30, suffix: '+', labelBs: 'Godina iskustva', labelEn: 'Years Experience' },
   { value: 4, suffix: '', labelBs: 'Usluge', labelEn: 'Services' },
   { value: 5, suffix: '.0', labelBs: 'Google ocjena', labelEn: 'Google Rating' },
-  { value: 1000, suffix: '+', labelBs: 'Zadovoljnih klijenata', labelEn: 'Happy Clients' },
+  { value: 5000, suffix: '+', labelBs: 'Zadovoljnih klijenata', labelEn: 'Happy Clients' },
 ];
 
 @Component({
@@ -303,6 +303,10 @@ export class App implements AfterViewInit, OnDestroy {
   private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
   private autoPlayResumeTimeout: ReturnType<typeof setTimeout> | null = null;
   private autoPlayPaused = false;
+  private servicesAutoPlayInterval: ReturnType<typeof setInterval> | null = null;
+  private servicesAutoPlayResumeTimeout: ReturnType<typeof setTimeout> | null = null;
+  private servicesAutoPlayPaused = false;
+  private servicesDesktopMq: MediaQueryList | null = null;
 
   // ── State ──
   lang = signal<'bs' | 'en'>('bs');
@@ -386,8 +390,9 @@ export class App implements AfterViewInit, OnDestroy {
     // Header scroll listener + back-to-top
     window.addEventListener('scroll', this.onScroll, { passive: true });
 
-    // Auto-play carousel
+    // Auto-play carousels
     this.startAutoPlay();
+    this.setupServicesAutoPlay();
   }
 
   ngOnDestroy(): void {
@@ -395,9 +400,12 @@ export class App implements AfterViewInit, OnDestroy {
     this.statsObserver?.disconnect();
     if (isPlatformBrowser(this.platformId)) {
       window.removeEventListener('scroll', this.onScroll);
+      this.teardownServicesAutoPlay();
     }
     this.stopAutoPlay();
     this.clearAutoPlayResumeTimeout();
+    this.stopServicesAutoPlay();
+    this.clearServicesAutoPlayResumeTimeout();
   }
 
   // ── Methods ──
@@ -554,12 +562,17 @@ export class App implements AfterViewInit, OnDestroy {
   // ── Carousel Navigation ──
   activeReviewIndex = signal(0);
   activeGalleryIndex = signal(0);
+  activeServiceIndex = signal(0);
+
+  private getCarouselTrack(carousel: Element): HTMLElement | null {
+    return carousel.querySelector('.reviews-track, .gallery-track, .services-track') as HTMLElement | null;
+  }
 
   scrollCarousel(carouselId: string, direction: 'prev' | 'next'): void {
     const carousel = this.el.nativeElement.querySelector(`#${carouselId}`);
     if (!carousel) return;
 
-    const track = carousel.querySelector('.reviews-track, .gallery-track') as HTMLElement;
+    const track = this.getCarouselTrack(carousel);
     if (!track) return;
 
     const firstChild = track.firstElementChild as HTMLElement;
@@ -584,7 +597,7 @@ export class App implements AfterViewInit, OnDestroy {
     const carousel = this.el.nativeElement.querySelector(`#${carouselId}`);
     if (!carousel) return;
 
-    const track = carousel.querySelector('.reviews-track, .gallery-track') as HTMLElement;
+    const track = this.getCarouselTrack(carousel);
     if (!track) return;
 
     const firstChild = track.firstElementChild as HTMLElement;
@@ -597,6 +610,8 @@ export class App implements AfterViewInit, OnDestroy {
 
     if (carouselId === 'reviewsCarousel') {
       this.activeReviewIndex.set(index);
+    } else if (carouselId === 'servicesCarousel') {
+      this.activeServiceIndex.set(index);
     } else {
       this.activeGalleryIndex.set(index);
     }
@@ -606,7 +621,7 @@ export class App implements AfterViewInit, OnDestroy {
     const carousel = this.el.nativeElement.querySelector(`#${carouselId}`);
     if (!carousel) return;
 
-    const track = carousel.querySelector('.reviews-track, .gallery-track') as HTMLElement;
+    const track = this.getCarouselTrack(carousel);
     if (!track) return;
 
     const firstChild = track.firstElementChild as HTMLElement;
@@ -617,6 +632,8 @@ export class App implements AfterViewInit, OnDestroy {
 
     if (carouselId === 'reviewsCarousel') {
       this.activeReviewIndex.set(index);
+    } else if (carouselId === 'servicesCarousel') {
+      this.activeServiceIndex.set(index);
     } else {
       this.activeGalleryIndex.set(index);
     }
@@ -665,6 +682,76 @@ export class App implements AfterViewInit, OnDestroy {
     if (this.autoPlayResumeTimeout) {
       clearTimeout(this.autoPlayResumeTimeout);
       this.autoPlayResumeTimeout = null;
+    }
+  }
+
+  // ── Auto-play Services Carousel (desktop only) ──
+  private setupServicesAutoPlay(): void {
+    this.servicesDesktopMq = window.matchMedia('(min-width: 1024px)');
+    this.syncServicesAutoPlay();
+    this.servicesDesktopMq.addEventListener('change', this.onServicesDesktopMqChange);
+  }
+
+  private teardownServicesAutoPlay(): void {
+    this.servicesDesktopMq?.removeEventListener('change', this.onServicesDesktopMqChange);
+    this.servicesDesktopMq = null;
+  }
+
+  private onServicesDesktopMqChange = (): void => {
+    this.syncServicesAutoPlay();
+  };
+
+  private syncServicesAutoPlay(): void {
+    if (this.servicesDesktopMq?.matches) {
+      this.startServicesAutoPlay();
+    } else {
+      this.stopServicesAutoPlay();
+      this.activeServiceIndex.set(0);
+      const carousel = this.el.nativeElement.querySelector('#servicesCarousel') as HTMLElement | null;
+      carousel?.scrollTo({ left: 0 });
+    }
+  }
+
+  private startServicesAutoPlay(): void {
+    if (this.servicesAutoPlayInterval) return;
+    this.servicesAutoPlayInterval = setInterval(() => {
+      if (this.servicesAutoPlayPaused) return;
+      if (!this.servicesDesktopMq?.matches) return;
+      const currentIndex = this.activeServiceIndex();
+      const nextIndex = (currentIndex + 1) % this.services.length;
+      this.goToSlide('servicesCarousel', nextIndex);
+    }, 5000);
+  }
+
+  private stopServicesAutoPlay(): void {
+    if (this.servicesAutoPlayInterval) {
+      clearInterval(this.servicesAutoPlayInterval);
+      this.servicesAutoPlayInterval = null;
+    }
+  }
+
+  onServicesMouseEnter(): void {
+    this.clearServicesAutoPlayResumeTimeout();
+    this.servicesAutoPlayPaused = true;
+  }
+
+  onServicesMouseLeave(): void {
+    this.servicesAutoPlayPaused = false;
+  }
+
+  onServicesTouchEnd(): void {
+    this.clearServicesAutoPlayResumeTimeout();
+    this.servicesAutoPlayPaused = true;
+    this.servicesAutoPlayResumeTimeout = setTimeout(() => {
+      this.servicesAutoPlayPaused = false;
+      this.servicesAutoPlayResumeTimeout = null;
+    }, 8000);
+  }
+
+  private clearServicesAutoPlayResumeTimeout(): void {
+    if (this.servicesAutoPlayResumeTimeout) {
+      clearTimeout(this.servicesAutoPlayResumeTimeout);
+      this.servicesAutoPlayResumeTimeout = null;
     }
   }
 }

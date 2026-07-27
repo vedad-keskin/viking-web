@@ -5,7 +5,29 @@
   background: var(--bg-secondary);
 }
 
-.services-grid {
+.services-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.services-header .section-heading {
+  margin-bottom: 2.5rem;
+}
+
+/* Nav + dots only on desktop carousel */
+.services-section .carousel-nav,
+.services-section .carousel-dots {
+  display: none;
+}
+
+.services-carousel {
+  overflow: visible;
+}
+
+.services-track {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;

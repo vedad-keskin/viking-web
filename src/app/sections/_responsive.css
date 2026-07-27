@@ -24,8 +24,8 @@
     padding: 3.5rem 2rem;
   }
 
-  /* Services: 2 columns on tablet, 4 on desktop */
-  .services-grid {
+  /* Services: 2 columns on tablet */
+  .services-track {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
@@ -162,9 +162,36 @@
     min-height: 480px;
   }
 
-  /* Services: refined desktop square */
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
+  /* Services: desktop carousel (~3 visible) */
+  .services-section .carousel-nav {
+    display: flex;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .services-section .carousel-dots {
+    display: flex;
+  }
+
+  .services-carousel {
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .services-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .services-track {
+    display: flex;
+    gap: 1.25rem;
+    padding-bottom: 0.5rem;
   }
 
   .team-grid {
@@ -172,6 +199,9 @@
   }
 
   .service-card {
+    flex: 0 0 31%;
+    max-width: 480px;
+    scroll-snap-align: start;
     aspect-ratio: 1 / 1;
   }
 
