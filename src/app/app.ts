@@ -165,8 +165,8 @@ const STAFF: StaffMember[] = [
   },
   {
     name: 'Almir Beli Keskin',
-    phone: '+387 61 839 067',
-    whatsapp: '38761839067',
+    phone: '+387 61 839 867',
+    whatsapp: '38761839867',
     roleBs: 'Vulkanizer',
     roleEn: 'Tire Specialist',
     image: 'assets/staff/3.webp',
@@ -212,8 +212,8 @@ const SERVICES: Service[] = [
         name: 'Almir Beli Keskin',
         roleBs: 'Vulkanizer',
         roleEn: 'Tire Specialist',
-        phone: '+387 61 839 067',
-        whatsapp: '38761839067',
+        phone: '+387 61 839 867',
+        whatsapp: '38761839867',
         image: 'assets/staff/3.webp',
       },
       {
