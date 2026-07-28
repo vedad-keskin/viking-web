@@ -157,6 +157,14 @@
     display: none;
   }
 
+  .hero-section {
+    padding-bottom: 0;
+  }
+
+  .scroll-indicator {
+    bottom: 2rem;
+  }
+
   .location-map iframe {
     height: 480px;
     min-height: 480px;

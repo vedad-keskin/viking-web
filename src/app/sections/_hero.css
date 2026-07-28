@@ -10,6 +10,8 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  /* Clear fixed floating CTA on mobile */
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
 }
 
 .hero-bg {
@@ -101,7 +103,7 @@
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
   left: 0;
   right: 0;
   z-index: 1;
