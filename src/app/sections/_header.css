@@ -246,6 +246,27 @@ header.scrolled {
   color: var(--text-secondary);
 }
 
+/* Day mode: black header controls (host-context so encapsulation applies) */
+:host-context([data-theme="day"]) .desktop-nav a,
+:host-context([data-theme="day"]) .theme-toggle,
+:host-context([data-theme="day"]) .lang-label {
+  color: #000000;
+}
+
+:host-context([data-theme="day"]) .desktop-nav a {
+  font-weight: 600;
+}
+
+:host-context([data-theme="day"]) .desktop-nav a:hover {
+  color: var(--accent);
+}
+
+:host-context([data-theme="day"]) .theme-toggle,
+:host-context([data-theme="day"]) .lang-switch {
+  border-color: rgba(0, 0, 0, 0.45);
+  color: #000000;
+}
+
 /* Hamburger */
 .menu-toggle {
   display: flex;

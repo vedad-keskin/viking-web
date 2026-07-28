@@ -263,3 +263,24 @@ body * {
   background: var(--accent);
   color: var(--white);
 }
+
+/* Day mode: black header controls (global — beats encapsulation) */
+[data-theme="day"] .desktop-nav a,
+[data-theme="day"] .theme-toggle,
+[data-theme="day"] .lang-label {
+  color: #000000;
+}
+
+[data-theme="day"] .desktop-nav a {
+  font-weight: 600;
+}
+
+[data-theme="day"] .desktop-nav a:hover {
+  color: var(--accent);
+}
+
+[data-theme="day"] .theme-toggle,
+[data-theme="day"] .lang-switch {
+  border-color: rgba(0, 0, 0, 0.45);
+  color: #000000;
+}
