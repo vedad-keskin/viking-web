@@ -95,8 +95,8 @@ interface Review {
 
 const REVIEWS: Review[] = [
   {
-    name: 'Yasir Burić',
-    text: 'Brza usluga, popio sam kafu u obližnjem kafiću dok sam čekao!',
+    name: 'Mirnes Šubara',
+    text: 'Zamjena i balansiranje guma obavljeno brzo i profesionalno. Ljubazno osoblje, odlična usluga.',
     stars: 5,
   },
   {
@@ -105,8 +105,13 @@ const REVIEWS: Review[] = [
     stars: 5,
   },
   {
-    name: 'Mirnes Šubara',
-    text: 'Zamjena i balansiranje guma obavljeno brzo i profesionalno. Ljubazno osoblje, odlična usluga.',
+    name: 'Ismail Sahinovic',
+    text: 'They are very polite and professional, they do their job very responsibly and on time. All recommendations.',
+    stars: 5,
+  },
+  {
+    name: 'Yasir Burić',
+    text: 'Brza usluga, popio sam kafu u obližnjem kafiću dok sam čekao!',
     stars: 5,
   },
   {
@@ -156,7 +161,7 @@ const STAFF: StaffMember[] = [
     whatsapp: '38762581310',
     roleBs: 'Pranje auta',
     roleEn: 'Car Wash Specialist',
-    image: 'assets/staff/2.png',
+    image: 'assets/staff/2.webp',
   },
   {
     name: 'Almir Beli Keskin',
@@ -167,12 +172,12 @@ const STAFF: StaffMember[] = [
     image: 'assets/staff/3.webp',
   },
   {
-    name: 'Ado Bužim',
-    phone: '+387 61 823 875',
-    whatsapp: '38761823875',
+    name: 'Adnan Budim',
+    phone: '+387 61 803 119',
+    whatsapp: '38761803119',
     roleBs: 'Presvlačenje siceva, volana i plafona',
     roleEn: 'Upholstery Specialist',
-    image: 'assets/staff/4.png',
+    image: 'assets/staff/4.webp',
   },
 ];
 
@@ -234,7 +239,7 @@ const SERVICES: Service[] = [
         roleEn: 'Car Wash Specialist',
         phone: '+387 62 581 310',
         whatsapp: '38762581310',
-        image: 'assets/staff/2.png',
+        image: 'assets/staff/2.webp',
       },
     ],
   },
@@ -263,12 +268,12 @@ const SERVICES: Service[] = [
     image: 'assets/services/ser4.webp?v=2',
     contacts: [
       {
-        name: 'Ado Bužim',
+        name: 'Adnan Budim',
         roleBs: 'Auto tapetar',
         roleEn: 'Upholstery Specialist',
-        phone: '+387 61 823 875',
-        whatsapp: '38761823875',
-        image: 'assets/staff/4.png',
+        phone: '+387 61 803 119',
+        whatsapp: '38761803119',
+        image: 'assets/staff/4.webp',
       },
     ],
   },
