@@ -177,7 +177,7 @@ const STAFF: StaffMember[] = [
     whatsapp: '38761803119',
     roleBs: 'Presvlačenje siceva, volana i plafona',
     roleEn: 'Upholstery Specialist',
-    image: 'assets/staff/4.webp',
+    image: 'assets/staff/4.webp?v=2',
   },
 ];
 
@@ -273,7 +273,7 @@ const SERVICES: Service[] = [
         roleEn: 'Upholstery Specialist',
         phone: '+387 61 803 119',
         whatsapp: '38761803119',
-        image: 'assets/staff/4.webp',
+        image: 'assets/staff/4.webp?v=2',
       },
     ],
   },
