@@ -310,57 +310,63 @@
       <div class="gallery-carousel" id="galleryCarousel" (scroll)="onCarouselScroll('galleryCarousel')">
         <div class="gallery-track">
           <div class="gallery-item">
-            <img src="assets/gallery/1.webp?v=4" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/1.webp?v=5" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">1 / 8</span>
+              <span class="gallery-item-counter">1 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/2.webp?v=4" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/2.webp?v=5" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">2 / 8</span>
+              <span class="gallery-item-counter">2 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/3.webp?v=4" alt="Jablanica" loading="lazy">
+            <img src="assets/gallery/3.webp?v=5" alt="Jablanica" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">3 / 8</span>
+              <span class="gallery-item-counter">3 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/4.webp?v=3" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/4.webp?v=4" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">4 / 8</span>
+              <span class="gallery-item-counter">4 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/5.webp?v=1" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/5.webp?v=2" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">5 / 8</span>
+              <span class="gallery-item-counter">5 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/6.webp?v=1" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/6.webp?v=2" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">6 / 8</span>
+              <span class="gallery-item-counter">6 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/7.webp?v=1" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/7.webp?v=2" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">7 / 8</span>
+              <span class="gallery-item-counter">7 / 9</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="assets/gallery/8.webp?v=1" alt="Viking Auto Servis" loading="lazy">
+            <img src="assets/gallery/8.webp?v=2" alt="Viking Auto Servis" loading="lazy">
             <div class="gallery-item-overlay">
-              <span class="gallery-item-counter">8 / 8</span>
+              <span class="gallery-item-counter">8 / 9</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/9.webp?v=1" alt="Viking Auto Servis" loading="lazy">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-counter">9 / 9</span>
             </div>
           </div>
         </div>
       </div>
       <div class="carousel-dots animate-on-scroll">
-        @for (img of [0, 1, 2, 3, 4, 5, 6, 7]; track img) {
+        @for (img of [0, 1, 2, 3, 4, 5, 6, 7, 8]; track img) {
           <button class="carousel-dot" [class.active]="activeGalleryIndex() === img" (click)="goToSlide('galleryCarousel', img)" [attr.aria-label]="'Go to image ' + (img + 1)"></button>
         }
       </div>
