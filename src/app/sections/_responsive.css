@@ -68,7 +68,7 @@
 
   .gallery-item {
     flex: 0 0 55%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 2;
   }
 
   .team-grid {
@@ -139,7 +139,7 @@
 
   .gallery-item {
     flex: 0 0 60%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 2;
   }
 
   .gallery-carousel {

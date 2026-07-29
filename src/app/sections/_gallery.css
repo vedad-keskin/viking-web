@@ -43,7 +43,7 @@
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 3 / 2;
   position: relative;
   cursor: pointer;
   box-shadow: 0 4px 20px var(--shadow-color);
